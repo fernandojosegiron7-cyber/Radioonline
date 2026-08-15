@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090304">
+  <meta name="description" content="ALÓ PAISANO RADIO - Radio online en vivo">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <title>ALÓ PAISANO RADIO</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main class="radio-app" id="app">
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="menu-overlay" id="menuOverlay" hidden></div>
+  <aside class="side-menu" id="sideMenu" aria-hidden="true">
+    <div class="menu-head">
+      <img src="/logo.png" alt="ALÓ PAISANO RADIO" class="menu-logo">
+      <div>
+        <strong>ALÓ PAISANO RADIO</strong>
+        <small>La música que nos conecta</small>
+      </div>
+      <button class="menu-close" id="menuClose" aria-label="Cerrar menú">×</button>
+    </div>
+
+    <nav class="menu-nav" aria-label="Menú principal">
+      <button class="menu-item active" data-section="home">⌂ <span>Inicio</span></button>
+      <button class="menu-item" data-section="history">♫ <span>Canciones que han sonado</span></button>
+      <button class="menu-item" data-section="social">◎ <span>Redes sociales</span></button>
+      <button class="menu-item request" data-section="request">✦ <span>Pedir canción</span></button>
+    </nav>
+
+    <div class="menu-panel" id="menuPanel">
+      <section class="menu-section" data-panel="home">
+        <h2>Inicio</h2>
+        <p>Escucha ALÓ PAISANO RADIO en vivo.</p>
+      </section>
+
+      <section class="menu-section" data-panel="history" hidden>
+        <div class="panel-title-row"><h2>Últimas canciones</h2><button id="clearHistory" class="mini-action">Limpiar</button></div>
+        <div class="history-list" id="historyList"><p class="empty-state">El historial aparecerá aquí mientras escuchas.</p></div>
+      </section>
+
+      <section class="menu-section" data-panel="social" hidden>
+        <h2>Redes sociales</h2>
+        <div class="social-list" id="socialList"></div>
+      </section>
+
+      <section class="menu-section" data-panel="request" hidden>
+        <h2>Pedir canción</h2>
+        <p>Escribe el nombre de la canción y envía tu petición por WhatsApp.</p>
+        <input id="requestSong" class="request-input" type="text" placeholder="Ej. Mi Complemento - Los Líderes de la Sierra" maxlength="120">
+        <button id="requestButton" class="request-button">Enviar petición</button>
+        <p class="request-note" id="requestNote"></p>
+      </section>
+    </div>
+  </aside>
+  <section class="player">
+    <div class="topbar">
+      <div class="live"><span class="live-dot"></span> EN VIVO</div>
+      <div class="brand-mini">Radio Online</div>
+    </div>
+
+    <div class="logo-stage" id="logoStage">
+      <img class="station-logo" id="stationLogo" alt="Logo de la radio" hidden>
+      <div class="station-logo placeholder-logo" id="logoFallback">📻</div>
+    </div>
+
+    <h1 class="station-name" id="stationName">ALÓ PAISANO RADIO</h1>
+    <div class="tagline" id="tagline">La música que nos conecta</div>
+
+    <div class="now-card">
+      <div class="now-label">Ahora suena</div>
+      <div class="song" id="song">Cargando información…</div>
+      <div class="artist" id="artist">ALÓ PAISANO RADIO</div>
+    </div>
+
+    <div class="eq" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+
+    <div class="play-row">
+      <button class="play-btn" id="play" aria-label="Reproducir">▶</button>
+    </div>
+
+    <div class="volume-panel">
+      <button class="mute" id="mute" aria-label="Silenciar">🔊</button>
+      <button class="vol-button" id="volDown" aria-label="Bajar volumen">−</button>
+      <input class="volume-slider" id="volume" type="range" min="0" max="100" value="80" step="1" aria-label="Volumen">
+      <button class="vol-button" id="volUp" aria-label="Subir volumen">+</button>
+      <div class="vol-number" id="volNumber">80%</div>
+    </div>
+
+    <div class="status" id="status">Toca Play para escuchar</div>
+    <div class="footer">Diseñado por FG Media</div>
+  </section>
+</main>
+
+<audio id="audio" preload="none" playsinline></audio>
+<script src="/config.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
