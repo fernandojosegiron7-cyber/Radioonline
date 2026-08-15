@@ -1,0 +1,267 @@
+/*
+Theme Name: Aló Paisano Radio Premium V3
+Author: FG Media
+Description: Reproductor premium vaquero con fondo personalizado, metadatos automáticos y controles de volumen.
+Version: 3.0.0
+Text Domain: alo-paisano-radio
+*/
+:root{
+ --red:#e0232f;
+ --red2:#930d16;
+ --gold:#e5ad47;
+ --gold2:#ffd986;
+ --glass:rgba(6,6,7,.68);
+ --glass2:rgba(20,7,7,.60);
+ --line:rgba(255,194,92,.18);
+ --white:#fff;
+ --muted:#b7a9a4;
+}
+*{box-sizing:border-box}
+html,body{
+ margin:0;width:100%;height:100%;
+ font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ background:#030303;color:#fff
+}
+body{overflow:hidden}
+
+.radio-app{
+ width:100%;
+ height:100svh;
+ min-height:100svh;
+ display:grid;
+ place-items:center;
+ position:relative;
+ overflow:hidden;
+ padding:clamp(10px,2vh,18px);
+ background:
+   linear-gradient(180deg,rgba(0,0,0,.24),rgba(0,0,0,.38)),
+   url("assets/radio-background.jpg") center center/cover no-repeat;
+}
+.radio-app:before{
+ content:"";
+ position:absolute;inset:0;pointer-events:none;
+ background:
+   radial-gradient(circle at 50% 45%,rgba(0,0,0,.04),rgba(0,0,0,.40) 72%),
+   linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.32));
+}
+.radio-app:after{
+ content:"";
+ position:absolute;
+ width:min(72vw,560px);height:min(72vw,560px);
+ border-radius:50%;
+ background:radial-gradient(circle,rgba(224,35,47,.12),transparent 66%);
+ filter:blur(20px);
+ z-index:0;
+}
+
+.player{
+ width:min(92vw,420px);
+ max-height:95svh;
+ position:relative;z-index:2;
+ padding:clamp(15px,2.1vh,22px);
+ border-radius:30px;
+ background:
+   linear-gradient(160deg,rgba(22,9,9,.78),rgba(4,4,5,.78));
+ border:1px solid rgba(255,210,124,.18);
+ box-shadow:
+   0 28px 80px rgba(0,0,0,.66),
+   0 0 32px rgba(204,20,31,.12),
+   inset 0 1px 0 rgba(255,255,255,.06);
+ backdrop-filter:blur(18px) saturate(120%);
+ -webkit-backdrop-filter:blur(18px) saturate(120%);
+ text-align:center;
+ overflow:hidden;
+}
+.player:before{
+ content:"";
+ position:absolute;left:13%;right:13%;top:0;height:1px;
+ background:linear-gradient(90deg,transparent,var(--gold2),transparent);
+ opacity:.85;
+}
+
+.topbar{
+ display:flex;align-items:center;justify-content:space-between;
+ margin-bottom:clamp(7px,1.2vh,11px)
+}
+.live{
+ display:inline-flex;align-items:center;gap:7px;
+ padding:6px 10px;border-radius:999px;
+ background:rgba(224,35,47,.12);
+ border:1px solid rgba(224,35,47,.28);
+ color:#ff838a;font-size:9px;font-weight:900;letter-spacing:1.35px
+}
+.live-dot{
+ width:7px;height:7px;border-radius:50%;
+ background:#ff3040;box-shadow:0 0 12px #ff3040;
+ animation:pulse 1.2s infinite
+}
+@keyframes pulse{50%{opacity:.32;transform:scale(.75)}}
+.brand-mini{
+ font-size:8px;color:#7f6762;letter-spacing:1.5px;text-transform:uppercase
+}
+
+.logo-stage{
+ width:clamp(120px,19vh,166px);
+ height:clamp(120px,19vh,166px);
+ margin:0 auto clamp(6px,1vh,10px);
+ border-radius:28px;
+ display:grid;place-items:center;
+ position:relative;
+ background:
+   radial-gradient(circle,rgba(224,35,47,.12),transparent 62%),
+   linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.01));
+ border:1px solid rgba(255,196,92,.13);
+ box-shadow:0 18px 45px rgba(0,0,0,.42);
+}
+.logo-stage:before{
+ content:"";position:absolute;inset:8%;border-radius:50%;
+ border:1px solid rgba(229,173,71,.16);
+ box-shadow:0 0 28px rgba(229,173,71,.08)
+}
+.station-logo{
+ position:relative;z-index:2;
+ max-width:90%;max-height:90%;
+ object-fit:contain;
+ filter:drop-shadow(0 11px 18px rgba(0,0,0,.55))
+}
+.playing .station-logo{animation:floatLogo 3s ease-in-out infinite}
+@keyframes floatLogo{50%{transform:translateY(-4px) scale(1.018)}}
+
+.station-name{
+ margin:0;
+ font-size:clamp(20px,3vh,27px);
+ line-height:1.05;font-weight:900;
+ text-shadow:0 4px 18px rgba(0,0,0,.55)
+}
+.tagline{
+ margin:4px 0 clamp(9px,1.35vh,13px);
+ color:var(--gold2);
+ font-size:9.5px;letter-spacing:.75px;font-weight:700
+}
+
+.now-card{
+ text-align:left;
+ padding:10px 12px;
+ border-radius:16px;
+ background:rgba(0,0,0,.35);
+ border:1px solid rgba(255,255,255,.055);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.025)
+}
+.now-label{
+ color:#9a7168;
+ font-size:8px;text-transform:uppercase;letter-spacing:1.35px;
+ margin-bottom:4px
+}
+.song{
+ font-size:13px;font-weight:900;
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.artist{
+ margin-top:2px;color:#b69d96;font-size:10px;
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+
+.eq{
+ height:clamp(21px,3.4vh,31px);
+ display:flex;align-items:center;justify-content:center;gap:4px;
+ margin:4px 0 6px
+}
+.eq i{
+ width:3px;height:5px;border-radius:8px;
+ background:linear-gradient(180deg,#ffd986,#ef7e36,#d41d2d);
+ opacity:.28
+}
+.playing .eq i{animation:eq .7s ease-in-out infinite alternate}
+.eq i:nth-child(2n){animation-delay:.1s}
+.eq i:nth-child(3n){animation-delay:.2s}
+.eq i:nth-child(4n){animation-delay:.3s}
+@keyframes eq{to{height:26px;opacity:.95}}
+
+.play-row{
+ display:flex;align-items:center;justify-content:center;
+ margin-bottom:8px
+}
+.play-btn{
+ width:clamp(58px,8.6vh,70px);
+ height:clamp(58px,8.6vh,70px);
+ border:0;border-radius:50%;
+ cursor:pointer;
+ font-size:23px;font-weight:900;color:#150b05;
+ background:linear-gradient(145deg,#ffe6a1,#e8ad42 50%,#b65b19);
+ box-shadow:
+   0 12px 30px rgba(222,111,34,.25),
+   0 0 0 1px rgba(255,234,166,.28),
+   inset 0 1px 0 rgba(255,255,255,.65);
+ transition:.17s ease
+}
+.play-btn:active{transform:scale(.94)}
+
+.volume-panel{
+ display:grid;
+ grid-template-columns:34px 28px 1fr 28px 40px;
+ align-items:center;
+ gap:6px;
+ padding:8px 9px;
+ border-radius:15px;
+ background:rgba(0,0,0,.38);
+ border:1px solid rgba(255,255,255,.055)
+}
+.vol-button,.mute{
+ height:28px;min-width:28px;
+ display:grid;place-items:center;
+ border-radius:9px;
+ border:1px solid rgba(255,255,255,.07);
+ background:rgba(255,255,255,.045);
+ color:#f0d6c9;
+ font-weight:800;cursor:pointer;
+ padding:0
+}
+.vol-button:active,.mute:active{transform:scale(.94)}
+.volume-slider{
+ -webkit-appearance:none;appearance:none;
+ width:100%;height:6px;border-radius:999px;
+ background:linear-gradient(90deg,var(--gold) var(--volume-fill,80%),rgba(255,255,255,.12) var(--volume-fill,80%));
+ outline:none;cursor:pointer
+}
+.volume-slider::-webkit-slider-thumb{
+ -webkit-appearance:none;appearance:none;
+ width:18px;height:18px;border-radius:50%;
+ background:#ffe1a1;
+ border:2px solid #9a541e;
+ box-shadow:0 2px 8px rgba(0,0,0,.45)
+}
+.volume-slider::-moz-range-thumb{
+ width:16px;height:16px;border-radius:50%;
+ background:#ffe1a1;border:2px solid #9a541e
+}
+.vol-number{
+ font-size:9px;color:#c9aaa0;text-align:right;
+ font-variant-numeric:tabular-nums
+}
+.status{
+ min-height:13px;
+ margin-top:6px;
+ color:#8f6d67;
+ font-size:8.7px
+}
+.footer{
+ margin-top:3px;
+ color:#654a45;
+ font-size:7.5px;letter-spacing:1.2px;text-transform:uppercase
+}
+
+@media(max-height:680px){
+ .player{padding:10px 14px;border-radius:24px}
+ .topbar{margin-bottom:3px}
+ .logo-stage{width:96px;height:96px;border-radius:20px;margin-bottom:4px}
+ .station-name{font-size:19px}
+ .tagline{margin:3px 0 5px}
+ .now-card{padding:7px 10px}
+ .eq{height:18px;margin:2px 0 3px}
+ .play-btn{width:48px;height:48px;font-size:19px}
+ .play-row{margin-bottom:4px}
+ .volume-panel{padding:5px 7px}
+ .status{margin-top:3px}.footer{margin-top:1px}
+}
+.placeholder-logo{font-size:52px;line-height:1}
+button{-webkit-tap-highlight-color:transparent}
